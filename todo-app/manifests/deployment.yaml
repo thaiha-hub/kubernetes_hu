@@ -1,0 +1,25 @@
+# TODO App Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-app-dep
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todo-app
+  template:
+    metadata:
+      labels:
+        app: todo-app
+    spec:
+      containers:
+      - name: todo-app
+        image: hadang285/todo-app:v0.2
+        # This prevents K8s from trying to pull the image every time if it exists
+        imagePullPolicy: IfNotPresent
+        # Here is the requirement: "environment variable PORT can be used"
+        env:
+        - name: PORT
+          value: "2345"
