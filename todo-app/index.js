@@ -9,7 +9,7 @@ const http = require('http')
 // Announce server creation
 const server = http.createServer((req, res) => {
   res.statusCode = 200
-  res.setHeader('Content-Type', 'text/html')
+  res.setHeader('Content-Type', 'text/html') // I change the content to html
   res.end('<h1>Todo App</h1><p>Welcome to my awesome Todo-app running on Kubernetees</p>')
 })
 

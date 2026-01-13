@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: todo-app-svc
+  namespace: default
+spec:
+  type: NodePort # ClusterIP is the default for only external requests
+  # "who is Service sending requests to?
+  selector:
+    app: todo-app
+  ports:
+  - protocol: TCP
+    port: 2345      # Port the Service is listening on
+    targetPort: 2345
+    nodePort: 30000 # Optional: Specify a port between 30000-32767
+    # Request -> Service (port: 2345) -> [forwards to] -> Pod Container (targetPort: 2345)
